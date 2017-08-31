@@ -1,0 +1,20 @@
+{
+  "name": "radio-ian-bot",
+  "version": "1.0.0",
+  "description": "My chat bot for radio ian.",
+  "main": "index.js",
+  "engines": {
+    "node": ">=8.0.0",
+    "npm": ">=5.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "./node_modules/.bin/nodemon ./index.js --watch ./server"
+  },
+  "author": "Ian segers <iansegers@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.3.0",
+    "nodemon": "^1.11.0"
+  }
+}
