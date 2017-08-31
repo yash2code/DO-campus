@@ -5,7 +5,11 @@ module.exports = exports = {
 	facebook: {
 		appSecret: process.env.FB_APP_SECRET,
 		pageToken: process.env.FB_PAGE_TOKEN,
-		token : 'some-token'
+		token: 'some-token'
+	},
+
+	youtube: {
+		key: process.env.YOUTUBE_API_KEY
 	}
 
 };

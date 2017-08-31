@@ -1,6 +1,6 @@
 const router = require('koa-better-router')().loadMethods();
 const facebookBodyParser = require('../middleware/facebook-body-parser');
-const messengerBot = require('../../messenger-bot');
+const messengerBot = require('../modules/messenger-bot');
 
 module.exports = exports = (appCtx) => {
 

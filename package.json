@@ -10,16 +10,20 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "./node_modules/.bin/nodemon ./index.js --watch ./",
-    "start" : "node ./index.js"
+    "start": "node ./index.js"
   },
   "author": "Ian segers <iansegers@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "google-auth-library": "^0.10.0",
+    "googleapis": "^21.3.0",
     "koa": "^2.3.0",
     "koa-better-router": "^2.1.1",
     "lodash": "^4.17.4",
     "pino": "^4.7.1",
-    "raw-body": "^2.3.0"
+    "raw-body": "^2.3.0",
+    "request-promise-native": "^1.0.4",
+    "url-join": "^2.0.2"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
