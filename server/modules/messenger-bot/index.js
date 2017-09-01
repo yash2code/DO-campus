@@ -32,12 +32,23 @@ async function handleEvent(event) {
 
 async function handleMessageEvent(event) {
 
-	const track = await suggester.suggestTrack();
+	const message = event.message.text.toLowerCase();
+	const specifiedGenre = suggester.availableGenres.find(genre => message.includes(genre));
 
-	await publisher.publishMessage({
-		text: `I will get back to you ${track}`,
-		event: event
-	});
+	if (specifiedGenre) {
+		const track = await suggester.suggestTrack(specifiedGenre);
+
+		await publisher.publishMessage({
+			text: `${track}`,
+			event: event
+		});
+	} else {
+		await publisher.publishMessage({
+			text: `Please specify one of the following genres: ${suggester.availableGenres.join(', ')}`,
+			event: event
+		});
+	}
+
 }
 
 function mapToEvents(entries) {

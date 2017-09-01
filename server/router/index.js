@@ -8,6 +8,10 @@ module.exports = exports = (appCtx) => {
 		ctx.response.body = 'Foo Bar Baz!';
 	});
 
+	router.get('/meta/privacy', async (ctx) => {
+		ctx.response.body = 'We do not store any data about you. You ask for a genre, and I give you a random suggestion.';
+	});
+
 	router.get('/webhook/facebook', async (ctx) => {
 
 		const expectedVerifyToken = appCtx.config.facebook.token;

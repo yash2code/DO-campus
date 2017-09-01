@@ -1,6 +1,6 @@
 const request = require('request-promise-native');
-const config = require('../../../config');
 const joinUrl = require('url-join');
+const config = require('../../../config');
 const baseUrl = 'https://graph.facebook.com/v2.10';
 const messageUrl = joinUrl(baseUrl, '/me/messages');
 
