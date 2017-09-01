@@ -3,6 +3,7 @@ const logger = require('pino')();
 const publisher = require('./publisher');
 const suggester = require('../suggester');
 const errors = require('../errors');
+const nlp = require('../nlp');
 
 module.exports = exports = {
 	handlePayload
@@ -33,16 +34,17 @@ async function handleEvent(event) {
 
 async function handleMessageEvent(event) {
 
-	const message = event.message.text.toLowerCase();
-	const specifiedGenre = suggester.availableGenres.find(genre => message.includes(genre));
-
 	try {
+		const message = event.message.text.toLowerCase();
+		const specifiedGenre = await nlp.parseGenre(event.message.text, event.sender.id);
+
 		const track = await suggester.suggestTrack(specifiedGenre);
 
 		await publisher.publishMessage({
 			text: `${track}`,
 			event: event
 		});
+
 	} catch (err) {
 		if (err instanceof errors.InvalidGenreError) {
 			await publisher.publishMessage({
