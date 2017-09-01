@@ -10,6 +10,10 @@ module.exports = exports = {
 
 	youtube: {
 		key: process.env.YOUTUBE_API_KEY
+	},
+
+	telegram : {
+		key : process.env.TELEGRAM_API_KEY
 	}
 
 };

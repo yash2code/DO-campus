@@ -2,6 +2,7 @@ const _ = require('lodash');
 const logger = require('pino')();
 const publisher = require('./publisher');
 const suggester = require('../suggester');
+const errors = require('../errors');
 
 module.exports = exports = {
 	handlePayload
@@ -35,18 +36,20 @@ async function handleMessageEvent(event) {
 	const message = event.message.text.toLowerCase();
 	const specifiedGenre = suggester.availableGenres.find(genre => message.includes(genre));
 
-	if (specifiedGenre) {
+	try {
 		const track = await suggester.suggestTrack(specifiedGenre);
 
 		await publisher.publishMessage({
 			text: `${track}`,
 			event: event
 		});
-	} else {
-		await publisher.publishMessage({
-			text: `Please specify one of the following genres: ${suggester.availableGenres.join(', ')}`,
-			event: event
-		});
+	} catch (err) {
+		if (err instanceof errors.InvalidGenreError) {
+			await publisher.publishMessage({
+				text: `Please specify one of the following genres: ${suggester.availableGenres.join(', ')}`,
+				event: event
+			});
+		}
 	}
 
 }
