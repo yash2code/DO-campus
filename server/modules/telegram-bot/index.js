@@ -1,7 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 const config = require('../../../config');
 const token = config.telegram.key;
-const bot = new TelegramBot(token, {webHook: {port: config.port, polling: true}});
+const bot = new TelegramBot(token, {polling: true, /*webHook: {port: 4002,}*/});
 const suggester = require('../suggester');
 const errors = require('../errors');
 const logger = require('pino')();
@@ -10,23 +10,24 @@ const nlp = require('../nlp');
 module.exports = exports = {
 
 	start() {
-		bot.setWebHook(`${config.appUrl}/bot${config.telegram.key}`);
+		//bot.setWebHook(`${config.appUrl}/bot${config.telegram.key}`);
 		bot.onText(/(.+)/, handleMessage);
 	}
 
 };
 
 async function handleMessage(event, match) {
+	const chatId = event.chat.id;
 	try {
 		const message = match[0] ? match[0].toLowerCase() : '';
 		const specifiedGenre = await nlp.parseGenre(message, event.chat.id);
-		const chatId = event.chat.id;
 		const track = await suggester.suggestTrack(specifiedGenre);
-		await bot.sendMessage(chatId, track);
+		await bot.sendMessage(event.chat.id, track);
 	} catch (err) {
 		if (err instanceof errors.InvalidGenreError) {
 			await bot.sendMessage(chatId, `Please specify one of the following genres: ${suggester.availableGenres.join(', ')}`);
-
+		} else {
+			logger.error(err);
 		}
 	}
 }
