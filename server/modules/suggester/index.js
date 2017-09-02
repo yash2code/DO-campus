@@ -8,7 +8,7 @@ const playlistMap = {
 	'chill': 'PLXDGozIYBcJx83G13rIU-jSIF6eU3ck40',
 	'acid': 'PLXDGozIYBcJxze7VrYfPdQFBvtexlQ8mT',
 	'goa': 'PLXDGozIYBcJxMDWVTcbfr3C0SFm8OA3zT',
-	'foreign': 'PLXDGozIYBcJy8ervhwn7r3BktgI6Gaw8x',
+	'international': 'PLXDGozIYBcJy8ervhwn7r3BktgI6Gaw8x',
 	'hardstyle': 'PLXDGozIYBcJwtfPkdI0EgCHiZuAIHbfN2',
 	'swing': 'PLXDGozIYBcJwyZSdAc-ACPW-sgnTBnW7X',
 	'latin': 'PLXDGozIYBcJwuFfzj6biMg52NMaRqpxRz',
