@@ -1,7 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 const config = require('../../../config');
 const token = config.telegram.key;
-const bot = new TelegramBot(token, {polling: true});
+const bot = new TelegramBot(token, {webHook: {port: config.port, polling: true}});
 const suggester = require('../suggester');
 const errors = require('../errors');
 const logger = require('pino')();
@@ -10,6 +10,7 @@ const nlp = require('../nlp');
 module.exports = exports = {
 
 	start() {
+		bot.setWebHook(`${config.appUrl}/bot${config.telegram.key}`);
 		bot.onText(/(.+)/, handleMessage);
 	}
 
