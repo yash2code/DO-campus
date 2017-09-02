@@ -51,6 +51,8 @@ async function handleMessageEvent(event) {
 				text: `Please specify one of the following genres: ${suggester.availableGenres.join(', ')}`,
 				event: event
 			});
+		}else{
+			logger.error(err);
 		}
 	}
 
