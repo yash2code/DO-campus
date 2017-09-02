@@ -24,6 +24,9 @@ async function suggestTrack(genre) {
 	}
 
 	const playlistId = playlistMap[genre];
+	// Consider caching playlist track results (rolling build up
+	// Any genre requested that was not cached yet, cach it, else not
+	// Consider retrieving this way also more tracks instead of 25
 	const tracks = await youtube.getPlaylistTracks(playlistId);
 	return tracks[Math.floor(tracks.length * Math.random())];
 
