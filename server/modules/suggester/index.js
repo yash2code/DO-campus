@@ -15,6 +15,7 @@ const playlistMap = {
 	'accoustic': 'PLXDGozIYBcJx0lL3mq8TfL8v7oX_F2lXd',
 	'hip-hop': 'PLXDGozIYBcJwGCbrN5rA2RMlVK_TAKE4E',
 	'dj-sets': 'PLXDGozIYBcJw7WVDoVcH7JMurOuxkixyD',
+	'dennis': 'PLXDGozIYBcJwL4Sdre6xTd1CRA19TbExP',
 };
 
 async function suggestTrack(genre) {
