@@ -1,6 +1,6 @@
 module.exports = exports = {
 
-	port: process.env.PORT || 3000,
+	port: process.env.PORT,
 	appUrl: process.env.APP_URL,
 
 	facebook: {
