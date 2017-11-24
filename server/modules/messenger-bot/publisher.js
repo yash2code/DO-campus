@@ -1,4 +1,4 @@
-const api = require('../facebook-api');
+/*const api = require('../facebook-api');
 
 module.exports = exports = {
 	publishMessage
@@ -9,4 +9,4 @@ async function publishMessage({event, text}) {
 		recipientId: event.sender.id,
 		text: text
 	});
-}
+}*/

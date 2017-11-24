@@ -1,4 +1,4 @@
-const request = require('request-promise-native');
+/*const request = require('request-promise-native');
 const joinUrl = require('url-join');
 const config = require('../../../config');
 const baseUrl = 'https://graph.facebook.com/v2.10';
@@ -27,4 +27,4 @@ async function sendMessage({text, recipientId}) {
 		}
 	})
 
-}
+}*/

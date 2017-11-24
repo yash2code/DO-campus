@@ -1,4 +1,4 @@
-const _ = require('lodash');
+/*const _ = require('lodash');
 const logger = require('pino')();
 const publisher = require('./publisher');
 const suggester = require('../suggester');
@@ -48,7 +48,7 @@ async function handleMessageEvent(event) {
 	} catch (err) {
 		if (err instanceof errors.InvalidGenreError) {
 			await publisher.publishMessage({
-				text: `Please specify one of the following genres: ${suggester.availableGenres.join(', ')}`,
+				text: `wrong genre Please specify one of the following genres: ${suggester.availableGenres.join(', ')}`,
 				event: event
 			});
 		}else{
@@ -66,4 +66,4 @@ function mapToEvents(entries) {
 				.filter(message => isIncoming(message, entry))
 		)
 	);
-}
+}*/
