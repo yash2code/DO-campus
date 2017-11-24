@@ -7,8 +7,10 @@ module.exports = exports = {
 };
 
 async function getPlaylistTracks(playlistId, limit = 25) {
-	if (!playlistId) throw new TypeError(`No playlistId provided.`);
+	//if (!playlistId) throw new TypeError(`No playlistId provided.`);
 	const response = await getPlaylistItems(playlistId, limit);
+	//const response = await runSamples();
+	
 	return response.items.map(mapToUrl);
 }
 
@@ -31,3 +33,6 @@ async function getPlaylistItems(playlistId, limit) {
 		});
 	});
 }
+
+
+  

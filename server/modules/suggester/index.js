@@ -1,5 +1,9 @@
-const youtube = require('../youtube-api');
+const google = require('googleapis');
+const youtube = google.youtube('v3');
+
+const youtube_api = require('../youtube-api');
 const errors = require('../errors');
+const config = require('../../../config');
 
 const playlistMap = {
 	'anything': 'FLyZs3JyvLqIlmWXnXrCGqdw',
@@ -18,20 +22,29 @@ const playlistMap = {
 	'dennis': 'PLXDGozIYBcJwL4Sdre6xTd1CRA19TbExP',
 };
 
-async function suggestTrack(genre) {
-
-	if (!playlistMap[genre]) {
-		throw new errors.InvalidGenreError();
-	}
-
-	const playlistId = playlistMap[genre];
-	// Consider caching playlist track results (rolling build up
-	// Any genre requested that was not cached yet, cach it, else not
-	// Consider retrieving this way also more tracks instead of 25
-	const tracks = await youtube.getPlaylistTracks(playlistId);
+function search(key, part ,genre) {
+	return new Promise((resolve, reject) => {
+	  youtube.search.list({
+		auth: key,
+		part: part,
+		q: genre
+	  }, function (err, data) {
+		if (err) {
+		  reject(err);
+		  return;
+		}
+		// use better check for playlistId here
+		resolve(data ? data.items[0].id.playlistId : null);
+	  })
+	});
+  }
+  
+  // then use it here
+  async function suggestTrack(genre) {
+	const playlistId = await search(config.youtube.key, 'id,snippet', genre);      
+	const tracks = await youtube_api.getPlaylistTracks(playlistId);
 	return tracks[Math.floor(tracks.length * Math.random())];
-
-}
+  }
 
 module.exports = exports = {
 	suggestTrack: suggestTrack,
