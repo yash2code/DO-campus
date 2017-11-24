@@ -1,5 +1,6 @@
 const google = require('googleapis');
 const youtube = google.youtube('v3');
+const util = require('util')
 
 const youtube_api = require('../youtube-api');
 const errors = require('../errors');
@@ -27,12 +28,14 @@ function search(key, part ,genre) {
 	  youtube.search.list({
 		auth: key,
 		part: part,
-		q: genre
+		q: genre,
+		type:'playlist'
 	  }, function (err, data) {
 		if (err) {
 		  reject(err);
 		  return;
 		}
+		//console.log(util.inspect(data.items[0].id.playlistId,false,null));
 		// use better check for playlistId here
 		resolve(data ? data.items[0].id.playlistId : null);
 	  })
@@ -41,9 +44,10 @@ function search(key, part ,genre) {
   
   // then use it here
   async function suggestTrack(genre) {
+	  
 	const playlistId = await search(config.youtube.key, 'id,snippet', genre);      
 	const tracks = await youtube_api.getPlaylistTracks(playlistId);
-	return tracks[Math.floor(tracks.length * Math.random())];
+	return tracks[0];
   }
 
 module.exports = exports = {

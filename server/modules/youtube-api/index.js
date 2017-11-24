@@ -6,7 +6,7 @@ module.exports = exports = {
 	getPlaylistTracks
 };
 
-async function getPlaylistTracks(playlistId, limit = 25) {
+async function getPlaylistTracks(playlistId, limit = 1) {
 	//if (!playlistId) throw new TypeError(`No playlistId provided.`);
 	const response = await getPlaylistItems(playlistId, limit);
 	//const response = await runSamples();
