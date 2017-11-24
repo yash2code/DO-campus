@@ -1,4 +1,4 @@
-const api = require('../api-ai-api');
+/*const api = require('../api-ai-api');
 
 async function parseGenre(message, userExternalId) {
 
@@ -16,4 +16,4 @@ async function parseGenre(message, userExternalId) {
 
 module.exports = exports = {
 	parseGenre
-};
+};*/
